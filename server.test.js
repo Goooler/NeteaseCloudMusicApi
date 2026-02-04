@@ -1,6 +1,13 @@
 const fs = require('fs')
 const path = require('path')
 const tmpPath = require('os').tmpdir()
+
+if (typeof before === 'undefined') {
+  global.before = require('bun:test').beforeAll
+  global.after = require('bun:test').afterAll
+  global.describe = require('bun:test').describe
+  global.it = require('bun:test').it
+}
 /** @type {import("express").Express & serverMod.ExpressExtension} */
 let app
 if (!fs.existsSync(path.resolve(tmpPath, 'anonymous_token'))) {
