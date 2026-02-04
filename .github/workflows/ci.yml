@@ -56,11 +56,20 @@ jobs:
       - name: Lint
         run: npm run lint
 
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
   # Status check that is required in branch protection rules.
   final-status:
     needs:
       - lint
       - test
+      - build
     runs-on: ubuntu-slim
     if: always()
     steps:
@@ -72,3 +81,15 @@ jobs:
             exit 1
           fi
           echo "All required jobs completed successfully."
+
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/trunk' && github.event_name == 'push'
+    needs: final-status
+    environment:
+      name: github-pages
+    permissions:
+      id-token: write
+      pages: write
+    steps:
+      - uses: actions/deploy-pages@v4
