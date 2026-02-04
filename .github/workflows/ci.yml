@@ -30,20 +30,11 @@ jobs:
       - name: Lint
         run: bun install && bun run lint
 
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs
-
   # Status check that is required in branch protection rules.
   final-status:
     needs:
       - lint
       - test
-      - build
     runs-on: ubuntu-slim
     if: always()
     steps:
@@ -66,4 +57,5 @@ jobs:
       id-token: write
       pages: write
     steps:
+      - uses: actions/upload-pages-artifact@v3
       - uses: actions/deploy-pages@v4
