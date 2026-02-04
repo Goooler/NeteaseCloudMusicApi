@@ -24,14 +24,14 @@
 
 ## 环境要求
 
-需要 NodeJS 14+ 环境
+需要 Bun 1.0+ 环境
 
 ## 安装
 
 ```shell
 $ git clone git@github.com:Binaryify/NeteaseCloudMusicApi.git
 $ cd NeteaseCloudMusicApi
-$ npm install
+$ bun install
 ```
 
 或者
@@ -39,26 +39,26 @@ $ npm install
 ```shell
 $ git clone https://github.com/Binaryify/NeteaseCloudMusicApi.git
 $ cd NeteaseCloudMusicApi
-$ npm install
+$ bun install
 ```
 
 ## 运行
 调用前务必阅读文档的`调用前须知`
 
 ```shell
-$ node app.js
+$ bun run start
 ```
 
 服务器启动默认端口为 3000,若不想使用 3000 端口,可使用以下命令: Mac/Linux
 
 ```shell
-$ PORT=4000 node app.js
+$ PORT=4000 bun run start
 ```
 
 windows 下使用 git-bash 或者 cmder 等终端执行以下命令:
 
 ```shell
-$ set PORT=4000 && node app.js
+$ set PORT=4000 && bun run start
 ```
 
 ## Vercel 部署
@@ -414,7 +414,7 @@ banner({ type:0 }).then(res=>{
 ## 单元测试
 
 ```shell
-$ npm test
+$ bun test
 ```
 
 ![单元测试](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/screenshot1.png)

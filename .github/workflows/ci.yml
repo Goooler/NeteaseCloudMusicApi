@@ -12,46 +12,46 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 14.x, 16.x, 18.x ]
+        bun-version: [ latest ]
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          bun-version: ${{ matrix.bun-version }}
       - uses: actions/cache@v3
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
           restore-keys: |
-            ${{ runner.os }}-node-
-      - run: npm ci
+            ${{ runner.os }}-bun-
+      - run: bun install --frozen-lockfile
         name: Install dependencies
       - name: Test
         env:
           NCM_API_TEST_LOGIN_COUNTRY_CODE: ${{ secrets.NCM_API_TEST_LOGIN_COUNTRY_CODE }}
           NCM_API_TEST_LOGIN_PHONE: ${{ secrets.NCM_API_TEST_LOGIN_PHONE }}
           NCM_API_TEST_LOGIN_PASSWORD: ${{ secrets.NCM_API_TEST_LOGIN_PASSWORD }}
-        run: npm test
+        run: bun test
 
   lint:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 14.x ]
+        bun-version: [ latest ]
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          bun-version: ${{ matrix.bun-version }}
       - uses: actions/cache@v3
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
           restore-keys: |
-            ${{ runner.os }}-node-
-      - run: npm ci
+            ${{ runner.os }}-bun-
+      - run: bun install --frozen-lockfile
         name: Install dependencies
       - name: Lint
-        run: npm run lint
+        run: bun run lint

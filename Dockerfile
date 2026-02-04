@@ -1,16 +1,16 @@
-FROM node:lts-alpine
+FROM oven/bun:1-alpine
 
 RUN apk add --no-cache tini
 
 ENV NODE_ENV production
-USER node
+USER bun
 
 WORKDIR /app
 
-COPY --chown=node:node . ./
+COPY --chown=bun:bun . ./
 
-RUN yarn --network-timeout=100000
+RUN bun install --frozen-lockfile
 
 EXPOSE 3000
 
-CMD [ "/sbin/tini", "--", "node", "app.js" ]
+CMD [ "/sbin/tini", "--", "bun", "run", "start" ]
