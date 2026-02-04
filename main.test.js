@@ -1,9 +1,4 @@
 const assert = require('assert')
-
-if (typeof describe === 'undefined') {
-  global.describe = require('bun:test').describe
-  global.it = require('bun:test').it
-}
 const main = require('./main')
 
 describe('methods in server.js', () => {
