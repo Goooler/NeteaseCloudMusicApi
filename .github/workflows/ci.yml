@@ -10,66 +10,31 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [ 14.x, 16.x, 18.x ]
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v5
+      - uses: oven-sh/setup-bun@v2
         with:
-          node-version: ${{ matrix.node-version }}
-      - uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - run: npm ci
-        name: Install dependencies
+          bun-version: ${{ matrix.bun-version }}
       - name: Test
         env:
           NCM_API_TEST_LOGIN_COUNTRY_CODE: ${{ secrets.NCM_API_TEST_LOGIN_COUNTRY_CODE }}
           NCM_API_TEST_LOGIN_PHONE: ${{ secrets.NCM_API_TEST_LOGIN_PHONE }}
           NCM_API_TEST_LOGIN_PASSWORD: ${{ secrets.NCM_API_TEST_LOGIN_PASSWORD }}
-        run: npm test
+        run: bun install && bun run test
 
   lint:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [ 14.x ]
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-      - uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - run: npm ci
-        name: Install dependencies
-      - name: Lint
-        run: npm run lint
-
-  build:
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs
+      - uses: oven-sh/setup-bun@v2
+      - name: Lint
+        run: bun install && bun run lint
 
   # Status check that is required in branch protection rules.
   final-status:
     needs:
       - lint
       - test
-      - build
     runs-on: ubuntu-slim
     if: always()
     steps:
@@ -92,4 +57,5 @@ jobs:
       id-token: write
       pages: write
     steps:
+      - uses: actions/upload-pages-artifact@v3
       - uses: actions/deploy-pages@v4

@@ -1,4 +1,12 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npx lint-staged
+# Use bunx if available, otherwise fall back to npx
+if command -v bunx >/dev/null 2>&1; then
+  bunx lint-staged
+elif command -v npx >/dev/null 2>&1; then
+  npx lint-staged
+else
+  echo "Neither bunx nor npx found, skipping lint-staged"
+  exit 0
+fi
