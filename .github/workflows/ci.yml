@@ -58,6 +58,8 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v3
       - name: Upload GitHub Pages artifact
