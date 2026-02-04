@@ -154,9 +154,12 @@ function ApiCache() {
     }
 
     // add automatic cache clearing from duration, includes max limit on setTimeout
-    timers[key] = setTimeout(function () {
-      instance.clear(key, true)
-    }, Math.min(duration, 2147483647))
+    timers[key] = setTimeout(
+      function () {
+        instance.clear(key, true)
+      },
+      Math.min(duration, 2147483647),
+    )
   }
 
   function accumulateContent(res, content) {
