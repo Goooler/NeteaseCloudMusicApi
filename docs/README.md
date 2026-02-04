@@ -297,49 +297,49 @@
 ```shell
 $ git clone git@github.com:Binaryify/NeteaseCloudMusicApi.git
 $ cd NeteaseCloudMusicApi
-$ npm install
+$ bun install
 ```
 
 ## 运行
 
 ```shell
-$ node app.js
+$ bun run start
 ```
 
 服务器启动默认端口为 3000, 若不想使用 3000 端口 , 可使用以下命令 : Mac/Linux
 
 ```shell
-$ PORT=4000 node app.js
+$ PORT=4000 bun run start
 ```
 
 windows 下使用 git-bash 或者 cmder 等终端执行以下命令 :
 
 ```shell
-$ set PORT=4000 && node app.js
+$ set PORT=4000 && bun run start
 ```
 
 服务器启动默认 host 为 localhost,如果需要更改, 可使用以下命令 : Mac/Linux
 
 ```shell
-$ HOST=127.0.0.1 node app.js
+$ HOST=127.0.0.1 bun run start
 ```
 
 windows 下使用 git-bash 或者 cmder 等终端执行以下命令 :
 
 ```shell
-$ set HOST=127.0.0.1 && node app.js
+$ set HOST=127.0.0.1 && bun run start
 ```
 
-### npx 方式运行
-支持 npx 方式运行,会自动安装依赖和运行
+### bunx 方式运行
+支持 bunx 方式运行,会自动安装依赖和运行
 ```
-npx NeteaseCloudMusicApi
+bunx NeteaseCloudMusicApi
 ```
-如果需要更新,可使用 `npx NeteaseCloudMusicApi@版本号` 方式运行
+如果需要更新,可使用 `bunx NeteaseCloudMusicApi@版本号` 方式运行
 
 或者运行
 ```
-npx NeteaseCloudMusicApi@latest
+bunx NeteaseCloudMusicApi@latest
 
 ```
 此命令每次执行都会使用最新版
