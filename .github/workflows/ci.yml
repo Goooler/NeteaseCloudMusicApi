@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        bun-version: [ latest ]
+        bun-version: [ 1.x ]
     steps:
       - uses: actions/checkout@v3
       - name: Setup Bun
@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        bun-version: [ latest ]
+        bun-version: [ 1.x ]
     steps:
       - uses: actions/checkout@v3
       - name: Setup Bun
