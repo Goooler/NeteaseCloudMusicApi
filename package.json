@@ -88,7 +88,7 @@
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-html": "7.1.0",
     "eslint-plugin-prettier": "5.5.5",
-    "husky": "7.0.4",
+    "husky": "9.1.7",
     "intelli-espower-loader": "1.1.0",
     "lint-staged": "12.5.0",
     "mocha": "10.8.2",
