@@ -48,7 +48,7 @@ jobs:
           echo "All required jobs completed successfully."
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     if: github.ref == 'refs/heads/trunk' && github.event_name == 'push'
     needs: final-status
     environment:
