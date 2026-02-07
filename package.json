@@ -10,7 +10,9 @@
     "prepare": "husky install",
     "pkgwin": "pkg . -t node18-win-x64 -C GZip -o bin/app --no-bytecode",
     "pkglinux": "pkg . -t node18-linux-x64 -C GZip -o bin/app --no-bytecode",
-    "pkgmacos": "pkg . -t node18-macos-x64 -C GZip -o bin/app --no-bytecode"
+    "pkgmacos": "pkg . -t node18-macos-x64 -C GZip -o bin/app --no-bytecode",
+    "doc-lint": "markdownlint docs/*.md",
+    "doc-check-links": "find docs -name '*.md' -exec markdown-link-check {} \\;"
   },
   "bin": "./app.js",
   "pkg": {

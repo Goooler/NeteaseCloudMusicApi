@@ -295,53 +295,58 @@
 ## 安装
 
 ```shell
-$ git clone git@github.com:Binaryify/NeteaseCloudMusicApi.git
-$ cd NeteaseCloudMusicApi
-$ bun install
+git clone git@github.com:Binaryify/NeteaseCloudMusicApi.git
+cd NeteaseCloudMusicApi
+bun install
 ```
 
 ## 运行
 
 ```shell
-$ bun run start
+bun run start
 ```
 
 服务器启动默认端口为 3000, 若不想使用 3000 端口 , 可使用以下命令 : Mac/Linux
 
 ```shell
-$ PORT=4000 bun run start
+PORT=4000 bun run start
 ```
 
 windows 下使用 git-bash 或者 cmder 等终端执行以下命令 :
 
 ```shell
-$ set PORT=4000 && bun run start
+set PORT=4000 && bun run start
 ```
 
 服务器启动默认 host 为 localhost,如果需要更改, 可使用以下命令 : Mac/Linux
 
 ```shell
-$ HOST=127.0.0.1 bun run start
+HOST=127.0.0.1 bun run start
 ```
 
 windows 下使用 git-bash 或者 cmder 等终端执行以下命令 :
 
 ```shell
-$ set HOST=127.0.0.1 && bun run start
+set HOST=127.0.0.1 && bun run start
 ```
 
 ### bunx 方式运行
+
 支持 bunx 方式运行,会自动安装依赖和运行
-```
+
+```shell
 bunx NeteaseCloudMusicApi
 ```
+
 如果需要更新,可使用 `bunx NeteaseCloudMusicApi@版本号` 方式运行
 
 或者运行
-```
+
+```shell
 bunx NeteaseCloudMusicApi@latest
 
 ```
+
 此命令每次执行都会使用最新版
 
 ## Vercel 部署
@@ -359,22 +364,26 @@ v4.0.8 加入了 Vercel 配置文件,可以直接在 Vercel 下部署了,不需�
 5. 直接点`Continue`
 6. `PROJECT NAME`自己填,`FRAMEWORK PRESET` 选 `Other` 然后直接点 `Deploy` 接着等部署完成即可
 
-
 ## 腾讯云 serverless 部署
+
 因 `Vercel` 在国内访问太慢(不绑定自己的域名的情况下),在此提供腾讯云 serverless 部署方法(注意:腾讯云 serverless 并不是免费的,前三个月有免费额度,之后收费)
+
 ### 操作方法
+
 1. fork 此项目
-2. 在腾讯云serverless应用管理页面( https://console.cloud.tencent.com/sls ),点击`新建应用`
+2. 在腾讯云serverless应用管理页面( <https://console.cloud.tencent.com/sls> ),点击`新建应用`
 3. 顶部`创建方式`选择 `Web 应用`
 4. 选择 `Express框架`,点击底部`下一步按钮`
 5. 输入`应用名`,上传方式选择`代码仓库`,进行GitHub授权(如已授权可跳过这一步),代码仓库选择刚刚fork的项目
 6. 启动文件填入:
-```
+
+```shell
 #!/bin/bash
 export PORT=9000
 /var/lang/node16/bin/node app.js
-``` 
-7. 点击`完成`,等待部署完成,点击`资源列表`的 `API网关` 里的 `URL`,正常情况会打开文档地址,点击文档`例子`可查看接口调用效果
+```
+
+1. 点击`完成`,等待部署完成,点击`资源列表`的 `API网关` 里的 `URL`,正常情况会打开文档地址,点击文档`例子`可查看接口调用效果
 
 ## 可以使用代理
 
@@ -464,11 +473,11 @@ docker run -d -p 3000:3000 -e http_proxy= -e https_proxy= -e no_proxy= -e HTTP_P
 > 以下是自行 build docker 镜像方式
 
 ```
-$ git clone https://github.com/Binaryify/NeteaseCloudMusicApi && cd NeteaseCloudMusicApi
+git clone https://github.com/Binaryify/NeteaseCloudMusicApi && cd NeteaseCloudMusicApi
 
-$ sudo docker build . -t netease-music-api
+sudo docker build . -t netease-music-api
 
-$ sudo docker run -d -p 3000:3000 netease-music-api
+sudo docker run -d -p 3000:3000 netease-music-api
 ```
 
 ## 接口文档
@@ -515,12 +524,12 @@ $ sudo docker run -d -p 3000:3000 netease-music-api
 
 #### 1. 手机登录
 
-**必选参数 :**  
+**必选参数 :**
 `phone`: 手机号码
 
 `password`: 密码
 
-**可选参数 :**  
+**可选参数 :**
 `countrycode`: 国家码，用于国外手机号登录，例如美国传入：`1`
 
 `md5_password`: md5 加密后的密码,传入后 `password` 参数将失效
@@ -593,16 +602,15 @@ v3.30.0 后支持手动传入 cookie,登录接口返回内容新增 `cookie` 字
 
 调用可参考项目文件例子
 
-`/public/qrlogin.html` (访问地址:http://localhost:3000/qrlogin.html)
+`/public/qrlogin.html` (访问地址:<http://localhost:3000/qrlogin.html>)
 
-`/public/qrlogin-nocookie.html` (访问地址:http://localhost:3000/qrlogin-nocookie.html)
-
+`/public/qrlogin-nocookie.html` (访问地址:<http://localhost:3000/qrlogin-nocookie.html>)
 
 #### 3. 游客登录
+
 说明 : 直接调用此接口, 可获取游客cookie,如果遇到其他接口未登录状态报400状态码需要验证的错误,可使用此接口获取游客cookie避免报错
 
 **接口地址 :** `/register/anonimous`
-
 
 #### 注意
 
@@ -667,11 +675,11 @@ v3.30.0 后支持手动传入 cookie,登录接口返回内容新增 `cookie` 字
 
 ### 检测手机号码是否已注册
 
-说明 : 调用此接口 ,可检测手机号码是否已注册  
-**必选参数 :**  
+说明 : 调用此接口 ,可检测手机号码是否已注册
+**必选参数 :**
 `phone` : 手机号码
 
-**可选参数 :**  
+**可选参数 :**
 `countrycode`: 国家码，用于国外手机号，例如美国传入：`1` ,默认 86 即中国
 
 **接口地址 :** `/cellphone/existence/check`
@@ -680,7 +688,7 @@ v3.30.0 后支持手动传入 cookie,登录接口返回内容新增 `cookie` 字
 
 ### 初始化昵称
 
-说明 : 刚注册的账号(需登录),调用此接口 ,可初始化昵称  
+说明 : 刚注册的账号(需登录),调用此接口 ,可初始化昵称
 **必选参数 :**
 `nickname` : 昵称
 
@@ -697,7 +705,6 @@ v3.30.0 后支持手动传入 cookie,登录接口返回内容新增 `cookie` 字
 **接口地址 :** `/nickname/check`
 
 **调用例子 :** `/nickname/check?nickname=binaryify`
-
 
 ### 更换绑定手机
 
@@ -756,7 +763,7 @@ v3.30.0 后支持手动传入 cookie,登录接口返回内容新增 `cookie` 字
 
 ### 获取用户等级信息
 
-说明 : 登录后调用此接口 , 可以获取用户等级信息,包含当前登录天数,听歌次数,下一等级需要的登录天数和听歌次数,当前等级进度,对应 https://music.163.com/#/user/level
+说明 : 登录后调用此接口 , 可以获取用户等级信息,包含当前登录天数,听歌次数,下一等级需要的登录天数和听歌次数,当前等级进度,对应 <https://music.163.com/#/user/level>
 
 **接口地址 :** `/user/level`
 
@@ -818,7 +825,7 @@ signature：用户签名
 
 ### 更新头像
 
-说明 : 登录后调用此接口,使用`'Content-Type': 'multipart/form-data'`上传图片 formData(name 为'imgFile'),可更新头像(参考: https://github.com/Binaryify/NeteaseCloudMusicApi/blob/master/public/avatar_update.html  ),支持命令行调用,参考module_example目录下`avatar_upload.js`
+说明 : 登录后调用此接口,使用`'Content-Type': 'multipart/form-data'`上传图片 formData(name 为'imgFile'),可更新头像(参考: <https://github.com/Binaryify/NeteaseCloudMusicApi/blob/master/public/avatar_update.html>  ),支持命令行调用,参考module_example目录下`avatar_upload.js`
 
 **可选参数 :**
 
@@ -937,9 +944,9 @@ tags: 歌单标签
 
 ### 歌单封面上传
 
-说明 : 登录后调用此接口,使用`'Content-Type': 'multipart/form-data'`上传图片 formData(name 为'imgFile'),可更新歌单封面(参考:https://github.com/Binaryify/NeteaseCloudMusicApi/blob/master/public/playlist_cover_update.html)
+说明 : 登录后调用此接口,使用`'Content-Type': 'multipart/form-data'`上传图片 formData(name 为'imgFile'),可更新歌单封面(参考:<https://github.com/Binaryify/NeteaseCloudMusicApi/blob/master/public/playlist_cover_update.html>)
 
-**必选参数 :**  
+**必选参数 :**
 `id`: 歌单 id 3143833470
 
 **可选参数 :**
@@ -969,7 +976,7 @@ tags: 歌单标签
 
 说明 : 登录后调用此接口,可以根据歌曲 id 顺序调整歌曲顺序
 
-**必选参数 :**  
+**必选参数 :**
 `pid`: 歌单 id
 
 `ids`: 歌曲 id 列表
@@ -1283,7 +1290,7 @@ tags: 歌单标签
 
 ### 收藏的歌手列表
 
-说明 : 调用此接口,可获取收藏的歌手列表  
+说明 : 调用此接口,可获取收藏的歌手列表
 
 **可选参数 :**
 
@@ -1440,13 +1447,12 @@ tags: 歌单标签
 **调用例子 :** `/playlist/track/all?id=24381616&limit=10&offset=1`
 
 > 注：关于`offset`，你可以这样理解，假设你当前的歌单有200首歌
-> 
+>
 > 你传入limit=50&offset=0等价于limit=50，你会得到第1-50首歌曲
 
 > 你传入limit=50&offset=50，你会得到第51-100首歌曲
 
 > 如果你设置limit=50&offset=100，你就会得到第101-150首歌曲
-
 
 ### 歌单详情动态
 
@@ -1458,7 +1464,6 @@ tags: 歌单标签
 
 **调用例子 :** `/playlist/detail/dynamic?id=24381616`
 
-
 ### 歌单更新播放量
 
 说明 : 调用后可更新歌单播放量
@@ -1469,14 +1474,11 @@ tags: 歌单标签
 
 **调用例子 :** `/playlist/update/playcount?id=24381616`
 
-
-
-
 ### 获取音乐 url
 
 说明 : 使用歌单详情接口后 , 能得到的音乐的 id, 但不能得到的音乐 url, 调用此接口, 传入的音乐 id( 可多个 , 用逗号隔开 ), 可以获取对应的音乐的 url,未登录状态或者非会员返回试听片段(返回字段包含被截取的正常歌曲的开始时间和结束时间)
 
-> 注 : 部分用户反馈获取的 url 会 403,[hwaphon](https://github.com/hwaphon)找到的解决方案是当获取到音乐的 id 后，将 https://music.163.com/song/media/outer/url?id=id.mp3 以 src 赋予 Audio 即可播放
+> 注 : 部分用户反馈获取的 url 会 403,[hwaphon](https://github.com/hwaphon)找到的解决方案是当获取到音乐的 id 后，将 <https://music.163.com/song/media/outer/url?id=id.mp3> 以 src 赋予 Audio 即可播放
 
 **必选参数 :** `id` : 音乐 id
 
@@ -1491,7 +1493,7 @@ tags: 歌单标签
 说明 : 使用注意事项同上
 
 **必选参数 :** `id` : 音乐 id
- `level`: 播放音质等级, 分为 `standard` => `标准`,`higher` => `较高`, `exhigh`=>`极高`, 
+ `level`: 播放音质等级, 分为 `standard` => `标准`,`higher` => `较高`, `exhigh`=>`极高`,
 `lossless`=>`无损`, `hires`=>`Hi-Res`, `jyeffect` => `高清环绕声`, `sky` => `沉浸环绕声`,
 `jymaster` => `超清母带`
 
@@ -1613,7 +1615,7 @@ tags: 歌单标签
 
 ### 歌单收藏者
 
-说明 : 调用此接口 , 传入歌单 id 可获取歌单的所有收藏者  
+说明 : 调用此接口 , 传入歌单 id 可获取歌单的所有收藏者
 **必选参数 :**
 
 `id` : 歌单 id
@@ -1693,37 +1695,43 @@ tags: 歌单标签
 
 说明 : 此接口的 `yrc` 字段即为逐字歌词 (可能有歌曲不包含逐字歌词)
 
-
 **必选参数 :** `id`: 音乐 id
 
 **接口地址 :** `/lyric/new`
 
 **调用例子 :** `/lyric/new?id=1824020871`
 
-
 相关讨论可见: [Issue](https://github.com/Binaryify/NeteaseCloudMusicApi/issues/1667)
 
 **歌词格式解析 :**
 
 当逐字歌词适用时，`yrc`的`lyric`字段包括形式如下的内容
+
 * （可能存在）JSON 歌曲元数据
+
 ```
 {"t":0,"c":[{"tx":"作曲: "},{"tx":"柳重言","li":"http://p1.music.126.net/Icj0IcaOjH2ZZpyAM-QGoQ==/6665239487822533.jpg","or":"orpheus://nm/artist/home?id=228547&type=artist"}]}
 {"t":5403,"c":[{"tx":"编曲: "},{"tx":"Alex San","li":"http://p1.music.126.net/pSbvYkrzZ1RFKqoh-fA9AQ==/109951166352922615.jpg","or":"orpheus://nm/artist/home?id=28984845&type=artist"}]}
 {"t":10806,"c":[{"tx":"制作人: "},{"tx":"王菲","li":"http://p1.music.126.net/1KQVD6XWbs5IAV0xOj1ZIA==/18764265441342019.jpg","or":"orpheus://nm/artist/home?id=9621&type=artist"},{"tx":"/"},{"tx":"梁荣骏","li":"http://p1.music.126.net/QrD8drwrRcegfKLPoiiG2Q==/109951166288436155.jpg","or":"orpheus://nm/artist/home?id=189294&type=artist"}]}
 ```
+
 该字段不一定出现；可能出现的数据意义有：
-- `t` : 数据显示开始时间戳 (毫秒)
-- `c` : 元数据list
-- `tx`: 文字段
-- `li`: 艺术家、歌手头像图url
-- `or`：云音乐app内路径；例中作用即打开艺术家主页
+
+* `t` : 数据显示开始时间戳 (毫秒)
+* `c` : 元数据list
+* `tx`: 文字段
+* `li`: 艺术家、歌手头像图url
+* `or`：云音乐app内路径；例中作用即打开艺术家主页
+
 * 逐字歌词
+
 ```
 [16210,3460](16210,670,0)还(16880,410,0)没...
- ~~~~1 ~~~2  ~~~~3 ~~4 5 ~6 (...) 
+ ~~~~1 ~~~2  ~~~~3 ~~4 5 ~6 (...)
 ```
+
 由标号解释:
+
 1. 歌词行显示开始时间戳 (毫秒)
 2. 歌词行显示总时长(毫秒)
 3. 逐字显示开始时间戳 (毫秒)
@@ -1796,7 +1804,7 @@ tags: 歌单标签
 
 说明 : 调用此接口 , 传入资源 parentCommentId 和资源类型 type 和资源 id 参数, 可获得该资源的歌曲楼层评论
 
-**必选参数 :**  
+**必选参数 :**
 `parentCommentId`: 楼层评论 id
 
 `id` : 资源 id
@@ -1956,7 +1964,7 @@ tags: 歌单标签
 
 说明 : 调用此接口 , 传入资源类型和资源 id,以及排序方式,可获取对应资源的评论
 
-**必选参数 :**  
+**必选参数 :**
 `id` : 资源 id, 如歌曲 id,mv id
 
 `type`: 数字 , 资源类型 , 对应歌曲 , mv, 专辑 , 歌单 , 电台, 视频对应以下类型
@@ -1979,7 +1987,7 @@ tags: 歌单标签
 7: 电台
 ```
 
-**可选参数 :**  
+**可选参数 :**
 `pageNo`:分页参数,第 N 页,默认为 1
 
 `pageSize`:分页参数,每页多少条数据,默认 20
@@ -2117,8 +2125,7 @@ tags: 歌单标签
 
    `t`:0 删除
 
-   `type`: 数字,资源类型,对应歌曲,mv,专辑,歌单,电台,视频对应以下类型  
-   
+   `type`: 数字,资源类型,对应歌曲,mv,专辑,歌单,电台,视频对应以下类型
 
     ```
     0: 歌曲
@@ -2137,8 +2144,8 @@ tags: 歌单标签
 
     7: 电台
 
-    ```  
-   
+    ```
+
    `id`:对应资源 id
    `content` :内容 id,可通过 `/comment/mv` 等接口获取
 
@@ -2152,7 +2159,7 @@ tags: 歌单标签
 
 **可选参数 :**
 
-`type`:资源类型,对应以下类型,默认为 0 即 PC  
+`type`:资源类型,对应以下类型,默认为 0 即 PC
 
 ```
 0: pc
@@ -2162,7 +2169,7 @@ tags: 歌单标签
 2: iphone
 
 3: ipad
-```  
+```
 
 **接口地址 :** `/banner`
 
@@ -2175,7 +2182,6 @@ tags: 歌单标签
 **必选参数 :**
 
 `type`:资源类型,对应以下类型
-
 
 ```
 0: 歌曲
@@ -2195,11 +2201,9 @@ tags: 歌单标签
 7: 电台
 ```
 
-
 `t`: 操作,1 为点赞,其他为取消点赞
 
-`id`: 资源 id  
-
+`id`: 资源 id
 
 **接口地址 :** `/resource/like`
 
@@ -2207,7 +2211,6 @@ tags: 歌单标签
 
 注意：如给动态点赞，不需要传入 id，需要传入 `threadId`,可通过 `event`,`/user/event` 接口获取，如：
 `/resource/like?t=1&type=6&threadId=A_EV_2_6559519868_32953014`
-
 
 ### 获取点赞过的视频
 
@@ -2340,7 +2343,7 @@ pc: 云盘歌曲信息，如果不存在该字段，则为非云盘歌曲
 
 说明 : 调用此接口 , 可获得已收藏专辑列表
 
-**可选参数 :**  
+**可选参数 :**
 `limit`: 取出数量 , 默认为 25
 
 `offset`: 偏移数量 , 用于分页 , 如 :( 页数 -1)\*25, 其中 25 为 limit 的值 , 默认
@@ -2496,6 +2499,7 @@ pc: 云盘歌曲信息，如果不存在该字段，则为非云盘歌曲
 **调用例子 :** `/recommend/songs/dislike?id=168091`
 
 返回数据 :
+
 ```json
 {
   "data":{
@@ -2613,8 +2617,6 @@ pc: 云盘歌曲信息，如果不存在该字段，则为非云盘歌曲
 
 **可选参数 :**
 
-
-
 `area`: ALL:全部,ZH:华语,EA:欧美,KR:韩国,JP:日本
 
 `type` : new:全部 hot:热门,默认为 new
@@ -2684,7 +2686,7 @@ pc: 云盘歌曲信息，如果不存在该字段，则为非云盘歌曲
 
 说明 : 调用此接口 , 可获取全部 mv
 
-**可选参数 :**  
+**可选参数 :**
 `area`: 地区,可选值为全部,内地,港台,欧美,日本,韩国,不填则为全部
 `type`: 类型,可选值为全部,官方版,原生,现场版,网易出品,不填则为全部
 
@@ -2766,7 +2768,7 @@ pc: 云盘歌曲信息，如果不存在该字段，则为非云盘歌曲
 
 **接口地址 :** `/program/recommend`
 
-**可选参数 :**  
+**可选参数 :**
 `limit`: 取出数量 , 默认为 10
 
 `offset`: 偏移数量 , 用于分页 , 如 :( 页数 -1)\*10, 其中 10 为 limit 的值 , 默认
@@ -3023,9 +3025,9 @@ type : 地区
 
 说明 : 登录后调用此接口,使用`'Content-Type': 'multipart/form-data'`上传 mp3 formData(name 为'songFile'),可上传歌曲到云盘
 
-参考: https://github.com/Binaryify/NeteaseCloudMusicApi/blob/master/public/cloud.html
+参考: <https://github.com/Binaryify/NeteaseCloudMusicApi/blob/master/public/cloud.html>
 
-访问地址: http://localhost:3000/cloud.html)
+访问地址: <http://localhost:3000/cloud.html>)
 
 支持命令行调用,参考 module_example 目录下`song_upload.js`
 
@@ -3037,7 +3039,7 @@ type : 地区
 
 说明 : 登录后调用此接口,可对云盘歌曲信息匹配纠正,如需取消匹配,asid 需要传 0
 
-**必选参数 :**  
+**必选参数 :**
 `uid`: 用户 id
 
 `sid`: 云盘的歌曲 id
@@ -3494,7 +3496,7 @@ type='1009' 获取其 id, 如`/search?keywords= 代码时间 &type=1009`
 
 `limit` : 返回数量 , 默认为 30
 
-`offset` : 偏移数量，用于分页 , 如 :( 页数 -1)\*30, 其中 30 为 limit 的值 , 默认为 0  
+`offset` : 偏移数量，用于分页 , 如 :( 页数 -1)\*30, 其中 30 为 limit 的值 , 默认为 0
 **接口地址 :** `/album/list`
 
 **调用例子 :** `/album/list?limit=10`
@@ -3653,7 +3655,7 @@ type='1009' 获取其 id, 如`/search?keywords= 代码时间 &type=1009`
 
 **可选参数 :** `limit`: 取出评论数量 , 默认为 10
 
-`offset`: 偏移数量 , 用于分页 , 如 :( 评论页数 -1)\*10, 其中 10 为 limit 的值  
+`offset`: 偏移数量 , 用于分页 , 如 :( 评论页数 -1)\*10, 其中 10 为 limit 的值
 **接口地址 :** `/yunbei/tasks/expense`
 
 **调用例子 :** `/yunbei/tasks/expense?limit=1`
@@ -3688,9 +3690,9 @@ type='1009' 获取其 id, 如`/search?keywords= 代码时间 &type=1009`
 
 主机模式:
 
-代码可参考: https://github.com/Binaryify/NeteaseCloudMusicApi/blob/master/public/listen_together_host.html
+代码可参考: <https://github.com/Binaryify/NeteaseCloudMusicApi/blob/master/public/listen_together_host.html>
 
-访问地址: http://localhost:3000/listen_together_host.html
+访问地址: <http://localhost:3000/listen_together_host.html>
 
 从机模式: 待整理
 
@@ -3805,7 +3807,6 @@ type='1009' 获取其 id, 如`/search?keywords= 代码时间 &type=1009`
 说明 : 调用此接口 , 传入歌手 id, 可获取歌手粉丝
 **必选参数 :** `id` : 歌手 id
 
-
 **接口地址 :** `/artist/fans`
 
 **调用例子 :** `/artist/fans?id=2116&limit=10&offset=0`
@@ -3813,7 +3814,6 @@ type='1009' 获取其 id, 如`/search?keywords= 代码时间 &type=1009`
 ### 歌手粉丝数量
 
 说明 : 调用此接口 , 传入歌手 id, 可获取歌手粉丝数量
-
 
 **必选参数 :** `id` : 歌手 id
 
@@ -3911,7 +3911,6 @@ type='1009' 获取其 id, 如`/search?keywords= 代码时间 &type=1009`
 
 **调用例子 :** `/vip/info`, `/vip/info?uid=32953014`
 
-
 ### 获取 VIP 信息(app端)
 
 说明: 登录后调用此接口，可获取当前 VIP 信息。
@@ -3921,8 +3920,6 @@ type='1009' 获取其 id, 如`/search?keywords= 代码时间 &type=1009`
 **接口地址 :** `/vip/info/v2`
 
 **调用例子 :** `/vip/info/v2`, `/vip/info/v2?uid=32953014`
-
-
 
 ### 音乐人签到
 
@@ -4215,7 +4212,7 @@ type='1009' 获取其 id, 如`/search?keywords= 代码时间 &type=1009`
 
 **接口地址:** `/voicelist/search`
 
-**可选参数：** 
+**可选参数：**
 
 `limit`: 取出歌单数量 , 默认为 200
 
@@ -4246,44 +4243,45 @@ ONLINE 已发布
 `offset`: 偏移数量 , 用于分页 , 如 :( 评论页数 -1)\*200, 其中 200 为 limit 的值
 
 ### 播客声音搜索
+
 说明: 可以搜索播客里的声音
 
 **接口地址:** `/voicelist/list/search`
 
-**可选参数**  
+**可选参数**
 
-- 状态（非必填）：
-    - `displayStatus: null`（默认）：返回所有状态的声音
-    - `displayStatus: "ONLINE"`：已发布的声音
-    - `displayStatus: "AUDITING"`：审核中的声音
-    - `displayStatus: "ONLY_SELF_SEE"`：尽自己可见的声音
-    - `displayStatus: "SCHEDULE_PUBLISH"`：定时发布的声音
-    - `displayStatus: "TRANSCODE_FAILED"`：上传失败的声音
-    - `displayStatus: "PUBLISHING"`：发布中的声音
-    - `displayStatus: "FAILED"`：发布失败的声音
+* 状态（非必填）：
+  * `displayStatus: null`（默认）：返回所有状态的声音
+  * `displayStatus: "ONLINE"`：已发布的声音
+  * `displayStatus: "AUDITING"`：审核中的声音
+  * `displayStatus: "ONLY_SELF_SEE"`：尽自己可见的声音
+  * `displayStatus: "SCHEDULE_PUBLISH"`：定时发布的声音
+  * `displayStatus: "TRANSCODE_FAILED"`：上传失败的声音
+  * `displayStatus: "PUBLISHING"`：发布中的声音
+  * `displayStatus: "FAILED"`：发布失败的声音
 
-- `limit: 20`：每次返回的声音数量（最多200个）
+* `limit: 20`：每次返回的声音数量（最多200个）
 
-- 搜索关键词：
-    - `name: null`：返回所有的声音
-    - `name: [关键词]`：返回包含指定关键词的声音文件
+* 搜索关键词：
+  * `name: null`：返回所有的声音
+  * `name: [关键词]`：返回包含指定关键词的声音文件
 
-- `offset: 0`：偏移量，用于分页，默认为0，表示从第一个声音开始获取
+* `offset: 0`：偏移量，用于分页，默认为0，表示从第一个声音开始获取
 
-- 博客：
-    - `radioId: null`：返回所有电台的声音
-    - `radioId: [播客id]`：返回特定播客的声音
+* 博客：
+  * `radioId: null`：返回所有电台的声音
+  * `radioId: [播客id]`：返回特定播客的声音
 
-- 是否公开：
-    - `type: null`：返回所有类型的声音
-    - `type: "PUBLIC"`：返回公开的声音
-    - `type: "PRIVATE"`：返回隐私的声音
+* 是否公开：
+  * `type: null`：返回所有类型的声音
+  * `type: "PUBLIC"`：返回公开的声音
+  * `type: "PRIVATE"`：返回隐私的声音
 
-- 是否付费：
-    - `voiceFeeType: null`（默认）：返回所有类型的声音
-    - `voiceFeeType: -1`：返回所有类型的声音
-    - `voiceFeeType: 0`：返回免费的声音
-    - `voiceFeeType: 1`：返回收费的声音
+* 是否付费：
+  * `voiceFeeType: null`（默认）：返回所有类型的声音
+  * `voiceFeeType: -1`：返回所有类型的声音
+  * `voiceFeeType: 0`：返回免费的声音
+  * `voiceFeeType: 1`：返回收费的声音
 
 ### 播客声音详情
 
@@ -4306,7 +4304,7 @@ ONLINE 已发布
 
 **接口地址:** `/voicelist/trans`
 
-**必选参数：** 
+**必选参数：**
 
 `position`: 位置, 最小为1, 最大为歌曲数量, 超过最大则为移动到最底, 小于1报错
 
@@ -4320,28 +4318,28 @@ ONLINE 已发布
 
 **接口地址:** `/voicelist/detail`
 
-**必选参数：** 
+**必选参数：**
 
 `id`: 播客id，即voiceListId
 
 ### 播客上传声音
+
 说明: 可以上传声音到播客,例子在 `/public/voice_upload.html` 访问地址: <a href="/voice_upload.html" target="_blank">/voice_upload.html</a>
 
 **接口地址:** `/voice/upload`
 
-**必选参数：** 
-`voiceListId`: 播客 id  
+**必选参数：**
+`voiceListId`: 播客 id
 
-`coverImgId`: 播客封面  
+`coverImgId`: 播客封面
 
-`categoryId`: 分类id  
+`categoryId`: 分类id
 
-`secondCategoryId`:次级分类id  
+`secondCategoryId`:次级分类id
 
 `description`: 声音介绍
 
-
-**可选参数：** 
+**可选参数：**
 `songName`: 声音名称
 
 `privacy`: 设为隐私声音,播客如果是隐私博客,则必须设为1
@@ -4357,28 +4355,30 @@ ONLINE 已发布
 `composedSongs`: 包含歌曲(歌曲id),多个用逗号隔开
 
 ### 验证接口-二维码生成
-说明: 进行某些操作,如关注用户,可能会触发验证,可调用这个接口生成二维码,使用app扫码后可解除验证  
+
+说明: 进行某些操作,如关注用户,可能会触发验证,可调用这个接口生成二维码,使用app扫码后可解除验证
 
 **接口地址:** `/verify/getQr`
 
-**必选参数：**   
+**必选参数：**
 
-`vid`: 触发验证后,接口返回的verifyId  
+`vid`: 触发验证后,接口返回的verifyId
 
-`type`:触发验证后,接口返回的verifyType  
+`type`:触发验证后,接口返回的verifyType
 
-`token`:触发验证后,接口返回的verifyToken  
+`token`:触发验证后,接口返回的verifyToken
 
-`evid`:触发验证后,接口返回的params的event_id  
+`evid`:触发验证后,接口返回的params的event_id
 
 `sign`:触发验证后,接口返回的params的sign
 
 ### 验证接口-二维码检测
+
 说明: 使用此接口,传入`/verify/getQr`接口返回的`qr`字符串,可检测二维码扫描状态
 
 **接口地址:** `/verify/qrcodestatus`
 
-**必选参数：**   
+**必选参数：**
 
 `qr`: `/verify/getQr`接口返回的`qr`字符串
 
@@ -4393,20 +4393,22 @@ qrCodeStatus:10,detailReason:0  二维码已扫描,并且手机号相同
 qrCodeStatus:20,detailReason:0  验证成功qrCodeStatus:21,detailReason:0 二维码已失效
 
 ### 听歌识曲
+
 说明: 使用此接口,上传音频文件或者麦克风采集声音可识别对应歌曲信息,具体调用例子参考 `/audio_match_demo/index.html` (项目文件: `public/audio_match_demo/index.html`)
 
 **接口地址:** `/audio/match`
 
-**必选参数：**     
+**必选参数：**
 
 `duration`: 音频时长,单位秒
 
 `audioFP`: 音频指纹,参考项目调用例子获取
 
 ### 根据nickname获取userid
-说明: 使用此接口,传入用户昵称,可获取对应的用户id,支持批量获取,多个昵称用`分号(;)`隔开  
 
-**必选参数：**  
+说明: 使用此接口,传入用户昵称,可获取对应的用户id,支持批量获取,多个昵称用`分号(;)`隔开
+
+**必选参数：**
 
 `nicknames`: 用户昵称,多个用分号(;)隔开
 
@@ -4415,9 +4417,10 @@ qrCodeStatus:20,detailReason:0  验证成功qrCodeStatus:21,detailReason:0 二�
 **调用例子:** `/get/userids?nicknames=binaryify` `/get/userids?nicknames=binaryify;binaryify2`
 
 ### 专辑简要百科信息
+
 说明: 登录后调用此接口,使用此接口,传入专辑id,可获取对应的专辑简要百科信息
 
-**必选参数：**  
+**必选参数：**
 
 `id`: 专辑id
 
@@ -4426,9 +4429,10 @@ qrCodeStatus:20,detailReason:0  验证成功qrCodeStatus:21,detailReason:0 二�
 **调用例子:** `/ugc/album/get?id=168223858`
 
 ### 歌曲简要百科信息
+
 说明: 登录后调用此接口,使用此接口,传入歌曲id,可获取对应的歌曲简要百科信息
 
-**必选参数：**  
+**必选参数：**
 
 `id`: 歌曲id
 
@@ -4437,9 +4441,10 @@ qrCodeStatus:20,detailReason:0  验证成功qrCodeStatus:21,detailReason:0 二�
 **调用例子:** `/ugc/song/get?id=2058263032`
 
 ### 歌手简要百科信息
+
 说明: 登录后调用此接口,使用此接口,传入歌手id,可获取对应的歌手简要百科信息
 
-**必选参数：**  
+**必选参数：**
 
 `id`: 歌手id
 
@@ -4448,9 +4453,10 @@ qrCodeStatus:20,detailReason:0  验证成功qrCodeStatus:21,detailReason:0 二�
 **调用例子:** `/ugc/artist/get?id=15396`
 
 ### mv简要百科信息
+
 说明: 登录后调用此接口,使用此接口,传入mv id,可获取对应的mv简要百科信息
 
-**必选参数：**  
+**必选参数：**
 
 `id`: mv id
 
@@ -4459,13 +4465,14 @@ qrCodeStatus:20,detailReason:0  验证成功qrCodeStatus:21,detailReason:0 二�
 **调用例子:** `/ugc/mv/get?id=14572641`
 
 ### 搜索歌手
+
 说明: 登录后调用此接口,使用此接口,传入歌手名关键字或者歌手id,可获取搜索到的歌手信息
 
-**必选参数：**  
+**必选参数：**
 
 `keyword`: 关键字或歌手id
 
-**可选参数：** 
+**可选参数：**
 
 `limit`: 取出条目数量 , 默认为 40
 
@@ -4474,16 +4481,17 @@ qrCodeStatus:20,detailReason:0  验证成功qrCodeStatus:21,detailReason:0 二�
 **调用例子:** `/ugc/artist/search?keyword=sasakure`
 
 ### 用户贡献内容
+
 说明: 登录后调用此接口,使用此接口,可获取当前登录用户贡献内容
 
-**必选参数：**  
+**必选参数：**
 
 `type`: 内容种类
 分为以下几种类型:
 曲库纠错 歌手:1 专辑:2 歌曲:3 MV:4 歌词:5 翻译:6
 曲库补充 专辑:101 MV:103
 
-**可选参数：** 
+**可选参数：**
 `limit`: 取出条目数量 , 默认为 10
 
 `offset`: 偏移数量
@@ -4498,6 +4506,7 @@ qrCodeStatus:20,detailReason:0  验证成功qrCodeStatus:21,detailReason:0 二�
 **调用例子:** `/ugc/detail`
 
 ### 用户贡献条目、积分、云贝数量
+
 说明: 登录后调用此接口,使用此接口,可获取当前登录用户贡献条目、积分、云贝数量
 
 **接口地址:** `/ugc/user/devote`
@@ -4505,9 +4514,10 @@ qrCodeStatus:20,detailReason:0  验证成功qrCodeStatus:21,detailReason:0 二�
 **调用例子:** `/ugc/user/devote`
 
 ### 年度听歌报告
+
 说明: 登录后调用此接口,使用此接口,可获取当前登录用户年度听歌报告，目前支持2017-2023年的报告
 
-**必选参数：**  
+**必选参数：**
 
 `year`: 报告年份
 
@@ -4519,7 +4529,7 @@ qrCodeStatus:20,detailReason:0  验证成功qrCodeStatus:21,detailReason:0 二�
 
 说明: 调用此接口可以为本地歌曲文件搜索匹配歌曲ID、专辑封面等信息
 
-**必选参数：**     
+**必选参数：**
 
 `title`: 文件的标题信息，是文件属性里的标题属性，并非文件名
 
@@ -4539,7 +4549,7 @@ qrCodeStatus:20,detailReason:0  验证成功qrCodeStatus:21,detailReason:0 二�
 
 说明: 调用此接口获取歌曲各个音质的文件信息，与 `获取歌曲详情` 接口相比，多出 `高清环绕声`、`沉浸环绕声`、`超清母带`等音质的信息
 
-**必选参数：**     
+**必选参数：**
 
 `id`: 歌曲id
 
@@ -4548,6 +4558,7 @@ qrCodeStatus:20,detailReason:0  验证成功qrCodeStatus:21,detailReason:0 二�
 **调用例子:** `song/music/detail?id=2082700997`
 
 返回字段说明 :
+
 ```
 "br": 比特率Bit Rate,
 "size": 文件大小,
@@ -4559,7 +4570,7 @@ qrCodeStatus:20,detailReason:0  验证成功qrCodeStatus:21,detailReason:0 二�
 
 说明: 调用此接口获取歌曲的红心用户数量
 
-**必选参数：**     
+**必选参数：**
 
 `id`: 歌曲id
 
