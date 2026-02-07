@@ -30,11 +30,25 @@ jobs:
       - name: Lint
         run: bun install && bun run lint
 
+  docs-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Markdown Lint
+        uses: davidans/github-action-markdown-lint@v1
+        with:
+          base-directory: docs
+      - name: Link Checker
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --verbose --no-progress 'docs/**/*.md'
+
   # Status check that is required in branch protection rules.
   final-status:
     needs:
       - lint
       - test
+      - docs-check
     runs-on: ubuntu-slim
     if: always()
     steps:
