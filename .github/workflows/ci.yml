@@ -35,9 +35,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Markdown Lint
-        uses: davidans/github-action-markdown-lint@v1
-        with:
-          base-directory: docs
+        uses: DavidAnson/markdownlint-cli2-action@v22
       - name: Link Checker
         uses: lycheeverse/lychee-action@v2
         with:
