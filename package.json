@@ -94,7 +94,7 @@
     "mocha": "11.7.5",
     "pkg": "^5.8.0",
     "power-assert": "1.6.1",
-    "prettier": "3.8.1",
+    "prettier": "3.8.2",
     "typescript": "6.0.2"
   }
 }
