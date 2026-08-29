@@ -3,5 +3,11 @@
   "extends": [
     "config:recommended",
   ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["typescript"],
+      "allowedVersions": "<7.0.0",
+    },
+  ],
   automerge: true,
 }
